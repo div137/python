@@ -298,46 +298,101 @@
                                 
                 <div class="content-item">
                     <!-- Chapter 1 -->
-        <div class="chapter-container">
-            <div class="chapter-header" onclick="toggleChapter('chapter1')">
-               <!-- <h2>Chapter 1: Introduction to Python</h2>-->
-                <h2>Python M3 online class 🎉 announcement</h2>
-                <span class="arrow" id="arrow1">➤</span>
-            </div>
-            <div class="chapter-content" id="chapter1">
-                <div class="video-container">
-                   <iframe src="https://www.youtube.com/embed/tv5zDp2lZnE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-                                
-                <div class="content-item">
-                    <h3><input type="checkbox" class="completion-checkbox" id="chapter1-complete"> Chapter Overview</h3>
-                    <p>This chapter introduces you to the Python programming language, its history, and why it's so popular today.</p>
-                    
-                    <h4>Learning Materials:</h4>
-                    <ul class="material-list">
-                        <li>
-                            <input type="checkbox" class="completion-checkbox" id="chapter1-material1">
-                            <span class="material-icon">📄</span>
-                            <a href="#" class="material-link">Python Basics Cheat Sheet</a>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="completion-checkbox" id="chapter1-material2">
-                            <span class="material-icon">📝</span>
-                            <a href="#" class="material-link">Installation Guide</a>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="completion-checkbox" id="chapter1-material3">
-                            <span class="material-icon">💻</span>
-                            <a href="#" class="material-link">First Program Exercises</a>
-                        </li>
-                    </ul>
+           <style>
+        .announcement {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(to bottom right, #f5f7fa, #e4e8eb);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px dashed #3498db;
+            padding-bottom: 10px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .features {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .feature-item {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .bonus {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .cta-button {
+            display: block;
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .footer {
+            font-size: 0.9em;
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement">
+        <div class="header">
+            <h1>🔥 Exclusive Core Python Online Class - हिंदी में पूरी तरह से! 🔥</h1>
+            <h2>🎯 बुनियाद से लेकर मास्टरी तक - सिर्फ Core Python पर फोकस!</h2>
+        </div>
+
+        <p>क्या आप <span class="highlight">वास्तविक Python प्रोग्रामिंग</span> सीखना चाहते हैं? बिना किसी भ्रम के <span class="highlight">Clean Coding, Logic Building और Python की पूरी Power</span> समझनी है? तो यह क्लास सिर्फ आपके लिए है!</p>
+
+        <h3>📌 इस क्लास में क्या खास होगा?</h3>
+        <div class="features">
+            <div class="feature-item">✅ <strong>100% Core Python</strong> - कोई बेमतलब की चीजें नहीं!</div>
+            <div class="feature-item">✅ <strong>Zero to Advanced</strong> - Variables से लेकर OOP, Decorators, Generators तक!</div>
+            <div class="feature-item">✅ <strong>Hands-On Coding</strong> - हर कॉन्सेप्ट को तुरंत प्रैक्टिस करेंगे!</div>
+            <div class="feature-item">✅ <strong>Real-World Examples</strong> - सीधे इंडस्ट्री जैसी प्रॉब्लम्स सॉल्व करेंगे!</div>
+            <div class="feature-item">✅ <strong>Doubt Solving</strong> - कभी भी रुककर समझ सकते हैं!</div>
+        </div>
+
+        <h3>📅 तारीख: [DD/MM] से शुरू</h3>
+        <h3>⏰ समय: [हर दिन/सप्ताहांत]</h3>
+        <h3>📍 प्लेटफॉर्म: [Zoom/Live YouTube/Google Meet]</h3>
+
+        <div class="bonus">
+            <h3>🎁 Bonus (मुफ्त में!):</h3>
+            <p>🔹 <strong>Python Cheat Sheets</strong> (PDF)<br>
+            🔹 <strong>50+ Practice Questions</strong> (Solution के साथ)<br>
+            🔹 <strong>1 Free Project</strong> (Certificate मिलेगा!)</p>
+        </div>
+
+        <a href="#" class="cta-button">🚀 सीटें लिमिटेड हैं! अभी रजिस्टर करें</a>
+
+        <p><strong>📞 कोई सवाल? WhatsApp करें:</strong> [नंबर डालें]</p>
+
+        <div class="footer">
+            <p>#CorePython #HindiMePython #ZeroToHero #ProgrammingKaAsliMaza</p>
+            <p>👉 ध्यान दें: यह कोर्स सिर्फ <strong>Python की मजबूत नींव</strong> बनाने के लिए है। Web/Data Science/AI नहीं, बस <strong>Pure Python!</strong></p>
+        </div>
+    </div>
                 </div>
             </div>
         </div>
-                </div>
-            </div>
-        </div>
-        
+
 
 
     </div>
