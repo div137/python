@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Technology Fundamentals - Module 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .chapter-container {
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .chapter-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chapter-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .chapter-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .chapter-content.active {
+            padding: 20px;
+            max-height: 5000px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .content-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .content-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .content-item h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .material-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .material-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .material-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .material-icon {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .material-link {
+            color: #3498db;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            flex-grow: 1;
+        }
+        
+        .material-link:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+        
+        .completion-checkbox {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .arrow {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .arrow.down {
+            transform: rotate(90deg);
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #27ae60;
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .chapter-header h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Web Technology Fundamentals</h1>
+            <p class="subtitle">Module 1 - Core Web Development Concepts</p>
+        </header>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Complete</div>
+        
+        <!-- Chapter 1 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter1')">
+                <h2>Chapter 1: Introduction to Web Technologies</h2>
+                <span class="arrow" id="arrow1">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter1">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/ysEN5RaKOlA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('ysEN5RaKOlA')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter1-complete"> Chapter Overview</h3>
+                    <p>This chapter introduces the fundamental concepts of web technologies, including how the web works, client-server architecture, and the history of the internet.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter1-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">Web Technology Glossary</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter1-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">HTTP Protocol Basics</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter1-material3">
+                            <span class="material-icon">💻</span>
+                            <a href="#" class="material-link">Setting Up Your Development Environment</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chapter 2 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter2')">
+                <h2>Chapter 2: HTML5 Fundamentals</h2>
+                <span class="arrow" id="arrow2">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter2">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/pQN-pnXPaVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('pQN-pnXPaVg')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter2-complete"> Chapter Overview</h3>
+                    <p>Learn the building blocks of web pages with HTML5, including semantic elements, forms, and multimedia integration.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter2-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">HTML5 Tag Reference</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter2-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">Semantic HTML Guide</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter2-material3">
+                            <span class="material-icon">🛠️</span>
+                            <a href="#" class="material-link">HTML5 Form Validation Exercises</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chapter 3 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter3')">
+                <h2>Chapter 3: CSS3 Styling</h2>
+                <span class="arrow" id="arrow3">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter3">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/1Rs2ND1ryYc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('1Rs2ND1ryYc')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter3-complete"> Chapter Overview</h3>
+                    <p>Master the art of styling web pages with CSS3, including selectors, box model, flexbox, grid, and responsive design principles.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter3-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">CSS3 Properties Reference</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter3-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">Flexbox and Grid Cheat Sheet</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter3-material3">
+                            <span class="material-icon">🎨</span>
+                            <a href="#" class="material-link">Responsive Design Challenges</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chapter 4 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter4')">
+                <h2>Chapter 4: JavaScript Basics</h2>
+                <span class="arrow" id="arrow4">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter4">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/PkZNo7MFNFg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('PkZNo7MFNFg')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter4-complete"> Chapter Overview</h3>
+                    <p>Introduction to JavaScript programming language, covering variables, functions, DOM manipulation, and event handling.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter4-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">JavaScript Syntax Guide</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter4-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">DOM Manipulation Reference</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter4-material3">
+                            <span class="material-icon">⚙️</span>
+                            <a href="#" class="material-link">Interactive Web Page Exercises</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chapter 5 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter5')">
+                <h2>Chapter 5: Frontend Frameworks Overview</h2>
+                <span class="arrow" id="arrow5">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter5">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/w7ejDZ8SWv8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('w7ejDZ8SWv8')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter5-complete"> Chapter Overview</h3>
+                    <p>Explore modern frontend frameworks like React, Angular, and Vue.js, understanding their benefits and use cases.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter5-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">Framework Comparison Guide</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter5-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">Component-Based Architecture</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter5-material3">
+                            <span class="material-icon">🖥️</span>
+                            <a href="#" class="material-link">Simple React App Tutorial</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chapter 6 -->
+        <div class="chapter-container">
+            <div class="chapter-header" onclick="toggleChapter('chapter6')">
+                <h2>Chapter 6: Backend Basics</h2>
+                <span class="arrow" id="arrow6">➤</span>
+            </div>
+            <div class="chapter-content" id="chapter6">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/-MTSQjw5DrM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <button class="download-btn" onclick="downloadVideo('-MTSQjw5DrM')">Download This Video</button>
+                
+                <div class="content-item">
+                    <h3><input type="checkbox" class="completion-checkbox" id="chapter6-complete"> Chapter Overview</h3>
+                    <p>Introduction to server-side programming, databases, and API development for web applications.</p>
+                    
+                    <h4>Learning Materials:</h4>
+                    <ul class="material-list">
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter6-material1">
+                            <span class="material-icon">📄</span>
+                            <a href="#" class="material-link">Node.js and Express Guide</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter6-material2">
+                            <span class="material-icon">📝</span>
+                            <a href="#" class="material-link">REST API Principles</a>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="completion-checkbox" id="chapter6-material3">
+                            <span class="material-icon">🗄️</span>
+                            <a href="#" class="material-link">MongoDB Basics</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Web Technology Fundamentals Course | Module 1</p>
+            <p>For educational purposes only</p>
+        </footer>
+    </div>
+
+    <script>
+        // Track completion progress
+        const checkboxes = document.querySelectorAll('.completion-checkbox');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const totalItems = checkboxes.length;
+        
+        // Load saved progress from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            checkboxes.forEach(checkbox => {
+                const itemId = checkbox.id;
+                if (localStorage.getItem(itemId)) {
+                    checkbox.checked = true;
+                    const label = checkbox.nextElementSibling;
+                    if (label) {
+                        label.classList.add('completed');
+                    }
+                }
+                
+                checkbox.addEventListener('change', updateProgress);
+            });
+            
+            updateProgress();
+        });
+        
+        function updateProgress() {
+            let completed = 0;
+            
+            checkboxes.forEach(checkbox => {
+                const itemId = checkbox.id;
+                const label = checkbox.nextElementSibling;
+                
+                if (checkbox.checked) {
+                    completed++;
+                    localStorage.setItem(itemId, 'true');
+                    if (label && label.classList) {
+                        label.classList.add('completed');
+                    }
+                } else {
+                    localStorage.removeItem(itemId);
+                    if (label && label.classList) {
+                        label.classList.remove('completed');
+                    }
+                }
+            });
+            
+            const percentage = Math.round((completed / totalItems) * 100);
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = percentage + '% Complete';
+        }
+        
+        // Toggle chapter content
+        function toggleChapter(chapterId) {
+            const chapter = document.getElementById(chapterId);
+            const arrow = document.getElementById('arrow' + chapterId.replace('chapter', ''));
+            
+            chapter.classList.toggle('active');
+            arrow.classList.toggle('down');
+        }
+        
+        // Video download functionality
+        function downloadVideo(videoId) {
+            try {
+                const downloadBtn = event.target;
+                downloadBtn.textContent = 'Preparing download...';
+                downloadBtn.disabled = true;
+                
+                // Open download page in new tab
+                window.open(`https://en.savefrom.net/#url=https://www.youtube.com/watch?v=${videoId}`, '_blank');
+                
+                downloadBtn.textContent = 'Download Started!';
+                setTimeout(() => {
+                    downloadBtn.textContent = 'Download This Video';
+                    downloadBtn.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Download error:', error);
+                const fallbackUrl = `https://www.y2mate.com/youtube/${videoId}`;
+                
+                const fallback = confirm('Direct download failed. Would you like to be redirected to a video download site?');
+                if (fallback) {
+                    window.open(fallbackUrl, '_blank');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
